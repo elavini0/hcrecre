@@ -1196,13 +1196,28 @@ function generatePDF() {
             }
         }
         
-        // Función para agregar header simple
+                // Función para agregar header simple
         function addSimpleHeader() {
             // Título del documento
             doc.setFontSize(18);
             doc.setTextColor('#007bff');
             doc.setFont('helvetica', 'bold');
             doc.text('HISTORIA CLÍNICA DIGITAL - RECREARTE', marginLeft, yPosition);
+            
+            // Fecha (en la siguiente línea)
+            const fecha = document.getElementById('fecha').value;
+            doc.setFontSize(12);
+            doc.setTextColor('#000000');
+            doc.setFont('helvetica', 'normal');
+            doc.text(`Fecha: ${fecha}`, pageWidth - 40, yPosition + 15);
+            
+            // Línea separadora
+            doc.setDrawColor('#e9ecef');
+            doc.line(marginLeft, yPosition + 25, pageWidth, yPosition + 25);
+            
+            yPosition += 35;
+        }
+
             
             // Fecha
             const fecha = document.getElementById('fecha').value;
