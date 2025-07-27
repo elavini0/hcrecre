@@ -1340,9 +1340,25 @@ function generatePDF() {
         checkPageBreak(30);
         doc.setFontSize(12);
         doc.setFont('helvetica', 'normal');
-        doc.text('Milagros Quilici', pageWidth - 50, yPosition);
+               doc.text('Milagros Quilici', pageWidth - 50, yPosition);
         doc.setFont('helvetica', 'bold');
         doc.text('MÉDICA', pageWidth - 50, yPosition + 10);
+        
+        // Agregar leyenda de Recrearte
+        yPosition += 30;
+        checkPageBreak(20);
+        doc.setFontSize(10);
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor('#007bff');
+        const centroText = 'RECREARTE CENTRO EDUCATIVO TERAPEUTICO';
+        const direccionText = 'Buenos Aires 1950 - Funes - Santa Fe';
+        const centroWidth = doc.getTextWidth(centroText);
+        const direccionWidth = doc.getTextWidth(direccionText);
+        doc.text(centroText, (pageWidth - centroWidth) / 2 + marginLeft, yPosition);
+        doc.setFont('helvetica', 'normal');
+        doc.setTextColor('#000000');
+        doc.text(direccionText, (pageWidth - direccionWidth) / 2 + marginLeft, yPosition + 8);
+
         
         // Guardar PDF
         const nombrePaciente = data.nombreApellido || 'Historia_Clinica';
